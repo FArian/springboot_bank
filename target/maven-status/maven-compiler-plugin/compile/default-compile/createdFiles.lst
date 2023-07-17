@@ -1,0 +1,12 @@
+com\app\bank\service\UserServiceImpl.class
+com\app\bank\model\Role.class
+com\app\bank\controller\UserController.class
+com\app\bank\LoginRegisterApplication.class
+com\app\bank\model\User.class
+com\app\bank\service\UserService.class
+com\app\bank\repository\UserRepository.class
+com\app\bank\config\CustomLoginSucessHandler.class
+com\app\bank\config\WebSecurityConfig.class
+com\app\bank\controller\AdminController.class
+com\app\bank\controller\AuthController.class
+com\app\bank\config\WebMvcConfig.class

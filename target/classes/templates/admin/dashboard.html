@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Welcome to Admin Dashboard</title>
+  <style>
+  /* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #4CAF50;
+  }
+</style>
+</head>
+<body>
+	  <h2>Welcome to Admin Dashboard</h2>
+      <p>Logged as: <span sec:authentication="name"></span></p>
+      <p>Has role: <span sec:authentication="authorities"></span></p>
+      <p><a th:href="@{/}">Home</a></p>
+      <p><a th:href="@{/logout}">Log out</a></p>
+</body>
+</html>

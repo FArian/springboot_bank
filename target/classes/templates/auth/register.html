@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+  <style>
+ /* styles.css */
+
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 50px auto;
+  max-width: 400px;
+  padding: 20px;
+}
+
+h3 {
+  color: #333333;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  color: #ff0000;
+  margin-bottom: 5px;
+}
+
+  </style>
+</head>
+<body>
+  <form th:action="@{/register}" th:object="${user}" method="post">
+    <h3>Registration</h3>
+    <input type="text" th:field="*{firstName}" placeholder="First Name" /> <br/><br/>
+    <input type="text" th:field="*{lastName}" placeholder="Last Name" /> <br/><br/>
+    <input type="text" th:field="*{mobile}" placeholder="Mobile Number" /> <br/><br/>
+    <input type="text" th:field="*{email}" placeholder="Email" /> <br/><br/>
+    <input type="password" th:field="*{password}" placeholder="Password" /> <br/><br/>
+    <select th:field="*{role}" required>
+      <option value="">Select</option>
+      <option value="ADMIN">ADMIN</option>
+      <option value="USER">USER</option>
+    </select> <br/><br/>
+    <button type="submit">Register</button> | <a th:href="@{|/login|}" th:text="'Log in'"></a>
+    <span th:utext="${successMessage}"></span>
+    <div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
+      <ul th:each="data : ${bindingResult.getAllErrors()}">
+        <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+      </ul>
+    </div>
+</form>
+</body>
+</html>
