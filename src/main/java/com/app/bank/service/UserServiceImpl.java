@@ -1,5 +1,6 @@
 package com.app.bank.service;
 
+import com.app.bank.model.Bank;
 import com.app.bank.model.User;
 import com.app.bank.repository.UserRepository;
 
@@ -8,14 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+@org.springframework.stereotype.Service
+public class ServiceImpl implements Service, UserDetailsService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -53,10 +53,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void saveBank(Bank bank) {
+        userRepository.save(bank);
+    }
+
+
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(
                 ()-> new UsernameNotFoundException(
                         String.format("USER_NOT_FOUND", email)
                 ));
     }
+
+
 }
