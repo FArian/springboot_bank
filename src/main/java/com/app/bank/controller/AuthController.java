@@ -25,7 +25,7 @@ public class AuthController {
 
     @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
     public String register(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("customer", new User());
         return "auth/register";
     }
 

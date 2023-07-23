@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Create Account</title>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #27ae60;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .success-message {
+      font-size: 24px;
+      color: #27ae60;
+      margin-top: 10px;
+    }
+
+    .error-message {
+      font-size: 18px;
+      color: #e74c3c;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-
+<div class="container">
+  <h2>Create Account</h2>
+  <form action="/createAccount" th:object="${account}" method="post">
+    <div class="form-group">
+      <label class="form-label" for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="dob">Date of Birth:</label>
+      <input type="date" class="form-control" id="dob" name="dob" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="address">Address:</label>
+      <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="typeOfAccount">Type of Account:</label>
+      <select class="form-control" id="typeOfAccount" name="typeOfAccount" required>
+        <option value="" disabled selected>Select Account Type</option>
+        <option value="DEBIT">DEBIT</option>
+        <option value="CREDIT">CREDIT</option>
+        <!--option value="BUSINESS_ACCOUNT">Business Account</option-->
+      </select>
+    </div>
+    <input type="submit" class="submit-btn" value="Create Account">
+  </form>
+  <span class="success-message" th:utext="${successMessage}"></span>
+  <div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
+    <ul class="error-message" th:each="data : ${bindingResult.getAllErrors()}">
+      <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>

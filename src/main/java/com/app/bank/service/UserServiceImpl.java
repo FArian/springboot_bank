@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class ServiceImpl implements Service, UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -27,7 +27,6 @@ public class ServiceImpl implements Service, UserDetailsService {
     public void saveUser(User user) {
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-//        user.setRole(Role.USER);
         userRepository.save(user);
     }
 
@@ -50,11 +49,6 @@ public class ServiceImpl implements Service, UserDetailsService {
         }
         System.out.println("existingUserEmail.isPresent() - "+existingUserEmail.isPresent()+"existingUserMobile.isPresent() - "+existingUserMobile.isPresent());
         return Arrays.asList(userExists, message);
-    }
-
-    @Override
-    public void saveBank(Bank bank) {
-        userRepository.save(bank);
     }
 
 
