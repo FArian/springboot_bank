@@ -18,6 +18,14 @@ import java.util.Collections;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails  {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @SequenceGenerator(
             name = "users_sequence",
             sequenceName = "users_sequence",

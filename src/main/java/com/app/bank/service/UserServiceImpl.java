@@ -2,19 +2,16 @@ package com.app.bank.service;
 
 import com.app.bank.model.User;
 import com.app.bank.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@org.springframework.stereotype.Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
@@ -27,7 +24,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void saveUser(User user) {
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-//        user.setRole(Role.USER);
         userRepository.save(user);
     }
 
@@ -52,6 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return Arrays.asList(userExists, message);
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(
@@ -59,4 +56,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                         String.format("USER_NOT_FOUND", email)
                 ));
     }
+
+
 }

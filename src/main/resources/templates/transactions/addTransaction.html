@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Perform Debit or Credit Operation</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #cccccc;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .btn-debit,
+    .btn-credit {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    .btn-debit {
+      background-color: #f44336;
+      border: none;
+      color: white;
+    }
+
+    .btn-credit {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<form action="@{/transactions/addTransaction}" th:object="${transaction}" method="post">
+<div class="container">
+  <h4 class="text-center">Perform Debit or Credit Operation</h4>
+  <div class="form-group">
+    <label class="form-label" for="accountNum">Account Number:</label>
+    <input type="text" class="form-control" id="accountNum" name="accountNum" required>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="amount">Amount:</label>
+    <input type="number" class="form-control" id="amount" name="amount" required>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn btn-debit">Debit From</button>
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-credit">Credit To</button>
+    </div>
+
+  </div>
+</div>
+</form>
+<span class="success-message" th:utext="${successMessage}"></span>
+<div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
+  <ul class="error-message" th:each="data : ${bindingResult.getAllErrors()}">
+    <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+  </ul>
+</div>
+</body>
+</html>

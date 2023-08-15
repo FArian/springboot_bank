@@ -18,7 +18,7 @@ import java.util.List;
 public class CustomLoginSucessHandler extends SimpleUrlAuthenticationSuccessHandler {
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-    throws IOException {
+            throws IOException {
         String targetUrl = determineTargetUrl(authentication);
         if(response.isCommitted()) return;
         RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -32,9 +32,9 @@ public class CustomLoginSucessHandler extends SimpleUrlAuthenticationSuccessHand
         for(GrantedAuthority a : authorities){
             roles.add(a.getAuthority());
         }
-        if(roles.contains("ADMIN")){
+        if(roles.contains("Employee")){
             url = "/admin/dashboard";
-        }else if(roles.contains("USER")) {
+        }else if(roles.contains("CUSTOMER")) {
             url = "/dashboard";
         }
         return url;

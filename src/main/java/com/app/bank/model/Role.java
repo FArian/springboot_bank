@@ -1,8 +1,8 @@
 package com.app.bank.model;
 
 public enum Role {
-    USER("User"),
-    ADMIN("Admin");
+    CUSTOMER("Customer"),
+    EMPLOYEE("Employee");
 
     private final String value;
 
