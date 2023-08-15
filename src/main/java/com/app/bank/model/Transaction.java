@@ -2,6 +2,7 @@ package com.app.bank.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "transaction")
@@ -9,7 +10,7 @@ public class Transaction {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "users_sequence"
+            generator = "transaction_sequence"
     )
     private int id;
     @NotNull(message = " accountNum cannot be empty")
@@ -22,11 +23,15 @@ public class Transaction {
     @Temporal(TemporalType.DATE)
     @NotNull(message = " createdAt cannot be empty")
     @Column(name = "createdAt")
-    private String createdAt;
+    private Date createdAt;
 
     public Transaction(String accountNum, double amount) {
         this.accountNum = accountNum;
         this.amount = amount;
+    }
+
+    public Transaction() {
+
     }
 
     public int getId() {

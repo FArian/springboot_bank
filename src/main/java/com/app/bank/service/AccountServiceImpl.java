@@ -3,7 +3,6 @@ package com.app.bank.service;
 import com.app.bank.model.Account;
 import com.app.bank.model.User;
 import com.app.bank.repository.AccountRepository;
-import com.app.bank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
     public String createAccount(Account account) {
         account.setUserId(getCurrentUserId());
         accountRepository.save(account);
-        return String.valueOf(new ResponseEntity<>("Benutzerkonto erfolgreich erstellt.", HttpStatus.CREATED));
+        return String.valueOf(new ResponseEntity<>("Account created successfully.", HttpStatus.CREATED));
     }
     public Long getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

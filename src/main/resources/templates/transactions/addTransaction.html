@@ -48,7 +48,7 @@
   </style>
 </head>
 <body>
-<form action="/addTransaction" th:object="${transaction}" method="post">
+<form action="@{/transactions/addTransaction}" th:object="${transaction}" method="post">
 <div class="container">
   <h4 class="text-center">Perform Debit or Credit Operation</h4>
   <div class="form-group">
@@ -70,5 +70,11 @@
   </div>
 </div>
 </form>
+<span class="success-message" th:utext="${successMessage}"></span>
+<div th:if="${bindingResult!=null && bindingResult.getAllErrors()!=null}">
+  <ul class="error-message" th:each="data : ${bindingResult.getAllErrors()}">
+    <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,7 +1,5 @@
 package com.app.bank.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +12,7 @@ public class Account {
             generator = "users_sequence"
     )
     private int id;
-    @NotNull(message = " userId cannot be empty")
+   // @NotNull(message = " userId cannot be empty")
     @Column(name = "userId")
     private Long userId;
     @NotNull(message = " Name cannot be empty")

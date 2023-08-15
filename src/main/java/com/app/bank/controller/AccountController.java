@@ -1,9 +1,7 @@
 package com.app.bank.controller;
 
 import com.app.bank.model.Account;
-import com.app.bank.model.User;
 import com.app.bank.service.AccountService;
-import org.apache.tomcat.util.modeler.BaseAttributeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,15 +1,12 @@
 package com.app.bank.service;
 
-import com.app.bank.model.Bank;
 import com.app.bank.model.User;
 import com.app.bank.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
